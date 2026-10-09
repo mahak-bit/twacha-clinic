@@ -29,6 +29,12 @@
   }
 }
 
+/* Height-aware variants for short screens (small phones, landscape). */
+@custom-variant short (@media (max-height: 720px));
+@custom-variant xshort (@media (max-height: 500px));
+/* Pinned scroll scenes only where there is room to show them. */
+@custom-variant pin (@media (prefers-reduced-motion: no-preference) and (min-height: 700px));
+
 @keyframes cue {
   from {
     transform: translateY(-100%);

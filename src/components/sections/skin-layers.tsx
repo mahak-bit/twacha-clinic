@@ -87,7 +87,8 @@ export function SkinLayers() {
   useGSAP(
     () => {
       const mm = gsap.matchMedia();
-      mm.add({ motion: MOTION_OK, lg: '(min-width: 1024px)' }, (ctx) => {
+      // keep in sync with the `pin` CSS variant: only pin where the scene fits
+      mm.add({ motion: `${MOTION_OK} and (min-height: 700px)`, lg: '(min-width: 1024px)' }, (ctx) => {
         if (!ctx.conditions?.motion) return;
         const el = root.current!;
         el.dataset.anim = 'on';
@@ -143,9 +144,9 @@ export function SkinLayers() {
     <section
       ref={root}
       aria-labelledby="layers-title"
-      className="relative bg-ink text-ivory motion-safe:h-[480vh] [&[data-anim=on]_[data-overlay]]:absolute [&[data-anim=on]_[data-overlay]]:inset-x-0 [&[data-anim=on]_[data-overlay]]:top-0 [&[data-anim=on]_[data-overlay]]:!mt-0"
+      className="relative bg-ink text-ivory pin:h-[480vh] [&[data-anim=on]_[data-overlay]]:absolute [&[data-anim=on]_[data-overlay]]:inset-x-0 [&[data-anim=on]_[data-overlay]]:top-0 [&[data-anim=on]_[data-overlay]]:!mt-0"
     >
-      <div className="relative overflow-hidden py-24 motion-safe:sticky motion-safe:top-0 motion-safe:flex motion-safe:h-svh motion-safe:items-center motion-safe:py-0">
+      <div className="relative overflow-hidden py-24 pin:sticky pin:top-0 pin:flex pin:h-svh pin:items-center pin:py-0">
         <div aria-hidden className="grain pointer-events-none absolute inset-0 opacity-40" />
         <div aria-hidden className="pointer-events-none absolute top-1/2 left-[30%] h-[36rem] w-[36rem] -translate-1/2 rounded-full bg-clay/25 blur-[120px]" />
 
@@ -199,7 +200,7 @@ export function SkinLayers() {
               ))}
             </div>
 
-            <div aria-hidden className="mt-8 hidden gap-2 lg:motion-safe:flex">
+            <div aria-hidden className="mt-8 hidden gap-2 lg:pin:flex">
               {layers.map((l) => (
                 <span key={l.name} className="relative h-px w-12 bg-ivory/20">
                   <span data-tick className="absolute inset-0 origin-left scale-x-0 bg-clay-soft" />

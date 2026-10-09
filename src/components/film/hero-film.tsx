@@ -98,30 +98,30 @@ export function HeroFilm() {
         <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-ivory via-ivory/75 to-transparent lg:hidden" />
         <div aria-hidden className="pointer-events-none absolute inset-y-0 left-0 hidden w-[62%] bg-gradient-to-r from-ivory/90 via-ivory/55 to-transparent lg:block" />
 
-        <div data-copy className="container-x relative flex h-full flex-col justify-end pt-28 pb-24 lg:justify-center lg:pb-0">
-          <p data-intro className="eyebrow flex items-center gap-3">
+        <div data-copy className="container-x relative flex h-full flex-col justify-end pt-28 pb-24 lg:justify-center lg:pb-0 xshort:pt-20 xshort:pb-20">
+          <p data-intro className="eyebrow flex items-center gap-3 xshort:hidden">
             <span aria-hidden className="h-px w-8 bg-clay" />
             {clinic.tagline}
           </p>
 
-          <h1 id="hero-title" className="display mt-5 text-[2.6rem] [perspective:900px] sm:text-7xl lg:text-[5.4rem] xl:text-[6.2rem]">
+          <h1 id="hero-title" className="display mt-5 text-[2.6rem] [perspective:900px] sm:text-7xl lg:text-[5.4rem] xl:text-[6.2rem] short:text-[2.3rem]! sm:short:text-6xl! xshort:mt-0 xshort:text-[2.4rem]!">
             <span className="sr-only">{HEADLINE.join(' ')}</span>
             <SplitLine line={1} text={HEADLINE[0]} />
             <SplitLine line={2} text={HEADLINE[1]} className="text-clay italic" />
             <SplitLine line={3} text={HEADLINE[2]} />
           </h1>
 
-          <p data-intro className="mt-5 max-w-md text-[0.95rem] leading-relaxed text-muted sm:mt-7 sm:text-lg">
+          <p data-intro className="mt-5 max-w-md text-[0.95rem] leading-relaxed text-muted sm:mt-7 sm:text-lg short:hidden">
             {clinic.name} in Talwandi, {clinic.city} is the dermatology practice of {clinic.doctor.name} — thoughtful, personalised care for
             skin, hair and scalp, alongside aesthetic dermatology.
           </p>
 
-          <div data-intro className="mt-7 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:items-center sm:gap-4">
+          <div data-intro className="mt-7 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:items-center sm:gap-4 short:mt-6">
             <ButtonLink href="/book">Book an Appointment</ButtonLink>
             <ButtonLink
               href="/#treatments"
               variant="outline"
-              className="bg-ivory/40 backdrop-blur-sm"
+              className="bg-ivory/40 backdrop-blur-sm max-sm:short:hidden"
               icon={<ArrowDown aria-hidden className="size-4 transition-transform duration-300 group-hover/btn:translate-y-0.5" />}
             >
               Explore Treatments

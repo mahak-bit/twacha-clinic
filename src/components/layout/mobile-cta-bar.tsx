@@ -10,7 +10,7 @@ export function MobileCtaBar() {
       <div className="grid grid-cols-[1fr_auto] gap-2 p-2.5">
         <Link
           href="/book"
-          className="flex h-12 items-center justify-center gap-2 bg-charcoal text-[0.78rem] font-semibold tracking-[0.1em] text-ivory uppercase transition-colors active:bg-clay"
+          className="flex h-12 items-center justify-center gap-2 bg-charcoal text-[0.78rem] font-semibold tracking-[0.1em] whitespace-nowrap text-ivory uppercase transition-colors active:bg-clay max-[359px]:text-[0.7rem] max-[359px]:tracking-[0.05em]"
         >
           <CalendarDays aria-hidden className="size-4" />
           Book Appointment
@@ -19,7 +19,7 @@ export function MobileCtaBar() {
           href={whatsappHref()}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex h-12 items-center justify-center gap-2 border border-charcoal/20 px-5 text-[0.78rem] font-semibold tracking-[0.1em] text-charcoal uppercase transition-colors active:bg-sand"
+          className="flex h-12 items-center justify-center gap-2 border border-charcoal/20 px-5 text-[0.78rem] font-semibold tracking-[0.1em] whitespace-nowrap text-charcoal uppercase transition-colors active:bg-sand max-[359px]:px-3 max-[359px]:text-[0.7rem] max-[359px]:tracking-[0.05em]"
         >
           <WhatsAppIcon className="size-[1.1rem]" />
           WhatsApp
