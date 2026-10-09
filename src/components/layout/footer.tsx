@@ -5,6 +5,7 @@ import { footerLinks } from '@/content/navigation';
 import { Placeholder } from '@/components/ui/placeholder';
 import { WhatsAppIcon } from '@/components/ui/whatsapp-icon';
 import { Logo } from './logo';
+import { FooterMotion } from './footer-motion';
 
 function InstagramIcon() {
   return (
@@ -32,9 +33,10 @@ export function Footer() {
   ].filter(Boolean) as { href: string; label: string; icon: React.ReactNode }[];
 
   return (
+    <FooterMotion>
     <footer className="bg-ink pb-28 text-ivory/70 lg:pb-0">
       <div className="container-x grid gap-14 py-20 md:grid-cols-12 lg:py-24">
-        <div className="md:col-span-5">
+        <div data-footer-col className="md:col-span-5">
           <Logo tone="light" />
           <p className="mt-6 max-w-sm text-sm leading-relaxed">
             Dermatology, hair & scalp and aesthetic care in {clinic.city}, led by {clinic.doctor.name}.
@@ -56,7 +58,7 @@ export function Footer() {
           </ul>
         </div>
 
-        <nav aria-label="Footer" className="md:col-span-3">
+        <nav data-footer-col aria-label="Footer" className="md:col-span-3">
           <h2 className="eyebrow text-clay-soft">Explore</h2>
           <ul className="mt-6 grid grid-cols-2 gap-x-6 gap-y-3 text-sm md:grid-cols-1">
             {footerLinks.map((l) => (
@@ -69,7 +71,7 @@ export function Footer() {
           </ul>
         </nav>
 
-        <div className="md:col-span-4">
+        <div data-footer-col className="md:col-span-4">
           <h2 className="eyebrow text-clay-soft">Visit</h2>
           <address className="mt-6 space-y-4 text-sm not-italic">
             <p className="flex gap-3">
@@ -124,5 +126,6 @@ export function Footer() {
         </div>
       </div>
     </footer>
+    </FooterMotion>
   );
 }

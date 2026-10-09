@@ -10,6 +10,7 @@ import { treatmentCategories } from '@/content/treatments';
 import { WhatsAppIcon } from '@/components/ui/whatsapp-icon';
 import { buttonClasses } from '@/components/ui/button';
 import { cn } from '@/lib/cn';
+import { Stagger, StaggerItem } from '@/components/ui/reveal';
 
 type Fields = {
   name: string;
@@ -67,9 +68,9 @@ function buildMessage(f: Fields) {
 const inputClasses =
   'mt-2 block w-full border-0 border-b border-charcoal/20 bg-transparent px-0 py-3 text-base text-ink placeholder:text-taupe/70 transition-colors focus:border-clay focus-visible:outline-offset-4 aria-[invalid=true]:border-red-700';
 
-function Field({ id, label, optional, error, children }: { id: string; label: string; optional?: boolean; error?: string; children: React.ReactNode }) {
+function Field({ id, label, optional, error, children, index = 0 }: { id: string; label: string; optional?: boolean; error?: string; children: React.ReactNode; index?: number }) {
   return (
-    <div>
+    <StaggerItem index={index}>
       <label htmlFor={id} className="eyebrow text-[0.62rem] text-charcoal">
         {label} {optional ? <span className="font-normal tracking-normal text-taupe normal-case">(optional)</span> : null}
       </label>
@@ -79,7 +80,7 @@ function Field({ id, label, optional, error, children }: { id: string; label: st
           {error}
         </p>
       ) : null}
-    </div>
+    </StaggerItem>
   );
 }
 
@@ -114,8 +115,10 @@ export function BookingForm() {
         <m.div
           key="done"
           role="status"
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
+          style={{ transformPerspective: 1400 }}
+          initial={{ opacity: 0, rotateY: -90, scale: 0.92 }}
+          animate={{ opacity: 1, rotateY: 0, scale: 1 }}
+          transition={{ type: 'spring', stiffness: 110, damping: 14, opacity: { duration: 0.3 } }}
           className="border border-line bg-cream p-8 sm:p-12"
         >
           <CheckCircle2 aria-hidden className="size-10 text-clay" strokeWidth={1.3} />
@@ -138,18 +141,18 @@ export function BookingForm() {
           </button>
         </m.div>
       ) : (
-        <m.form key="form" noValidate onSubmit={onSubmit} exit={{ opacity: 0, y: -8 }} className="space-y-9" aria-describedby="form-note">
-          <div className="grid gap-9 sm:grid-cols-2">
-            <Field id="name" label="Full name" error={errors.name}>
+        <m.form key="form" noValidate onSubmit={onSubmit} style={{ transformPerspective: 1400 }} exit={{ opacity: 0, rotateY: 90, scale: 0.92, transition: { duration: 0.35, ease: 'easeIn' } }} className="space-y-9" aria-describedby="form-note">
+          <Stagger className="grid gap-9 sm:grid-cols-2">
+            <Field index={0} id="name" label="Full name" error={errors.name}>
               <input id="name" name="name" autoComplete="name" required value={fields.name} onChange={set('name')} aria-invalid={!!errors.name} aria-describedby={describedBy('name')} className={inputClasses} placeholder="Your name" />
             </Field>
-            <Field id="phone" label="Phone" error={errors.phone}>
+            <Field index={1} id="phone" label="Phone" error={errors.phone}>
               <input id="phone" name="phone" type="tel" inputMode="tel" autoComplete="tel" required value={fields.phone} onChange={set('phone')} aria-invalid={!!errors.phone} aria-describedby={describedBy('phone')} className={inputClasses} placeholder="+91" />
             </Field>
-            <Field id="email" label="Email" optional error={errors.email}>
+            <Field index={2} id="email" label="Email" optional error={errors.email}>
               <input id="email" name="email" type="email" autoComplete="email" value={fields.email} onChange={set('email')} aria-invalid={!!errors.email} aria-describedby={describedBy('email')} className={inputClasses} placeholder="you@example.com" />
             </Field>
-            <Field id="concern" label="Concern" error={errors.concern}>
+            <Field index={3} id="concern" label="Concern" error={errors.concern}>
               <select id="concern" name="concern" required value={fields.concern} onChange={set('concern')} aria-invalid={!!errors.concern} aria-describedby={describedBy('concern')} className={cn(inputClasses, !fields.concern && 'text-taupe/70')}>
                 <option value="">Select a concern</option>
                 {concernOptions.map((g) => (
@@ -164,10 +167,10 @@ export function BookingForm() {
                 <option value="Other / not sure">Other / not sure</option>
               </select>
             </Field>
-            <Field id="date" label="Preferred date" optional>
+            <Field index={4} id="date" label="Preferred date" optional>
               <input id="date" name="date" type="date" min={today} value={fields.date} onChange={set('date')} className={inputClasses} />
             </Field>
-            <Field id="time" label="Preferred time" optional>
+            <Field index={5} id="time" label="Preferred time" optional>
               <select id="time" name="time" value={fields.time} onChange={set('time')} className={cn(inputClasses, !fields.time && 'text-taupe/70')}>
                 <option value="">No preference</option>
                 {TIME_PREFERENCES.map((t) => (
@@ -177,11 +180,13 @@ export function BookingForm() {
                 ))}
               </select>
             </Field>
-          </div>
-          <Field id="message" label="Message" optional>
+          </Stagger>
+          <Stagger className="space-y-9">
+          <Field index={0} id="message" label="Message" optional>
             <textarea id="message" name="message" rows={4} value={fields.message} onChange={set('message')} className={cn(inputClasses, 'resize-y')} placeholder="Briefly describe your concern, if you'd like" />
           </Field>
 
+          <StaggerItem index={1}>
           <div id="form-note" className="flex gap-3 border-l-2 border-clay/50 bg-cream px-5 py-4 text-sm leading-relaxed text-muted">
             <Info aria-hidden className="mt-0.5 size-4 shrink-0 text-clay" />
             <p>
@@ -189,13 +194,17 @@ export function BookingForm() {
               will contact you to confirm availability. Please do not use this form for medical emergencies.
             </p>
           </div>
+          </StaggerItem>
 
+          <StaggerItem index={2}>
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <button type="submit" className={buttonClasses('primary', 'w-full sm:w-auto')}>
               Request Appointment
             </button>
             <p className="text-xs text-muted">Your details will be sent to the clinic via WhatsApp.</p>
           </div>
+          </StaggerItem>
+          </Stagger>
         </m.form>
       )}
     </AnimatePresence>
