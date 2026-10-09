@@ -4,6 +4,7 @@ import { ButtonLink } from '@/components/ui/button';
 import { MediaFrame } from '@/components/ui/media-frame';
 import { Placeholder } from '@/components/ui/placeholder';
 import { Reveal } from '@/components/ui/reveal';
+import { ScrollTilt } from '@/components/ui/scroll-tilt';
 
 export function About() {
   const { doctor } = clinic;
@@ -13,7 +14,9 @@ export function About() {
       <div className="container-x grid gap-14 lg:grid-cols-12 lg:gap-16">
         <Reveal className="lg:col-span-5">
           <div className="group lg:sticky lg:top-28">
-            <MediaFrame slot="doctor" sizes="(min-width: 1024px) 40vw, 100vw" className="aspect-[4/5] w-full" />
+            <ScrollTilt>
+              <MediaFrame slot="doctor" sizes="(min-width: 1024px) 40vw, 100vw" className="aspect-[4/5] w-full shadow-[0_40px_80px_-40px_rgba(42,38,35,0.45)]" />
+            </ScrollTilt>
             <div className="mt-5 flex items-end justify-between gap-4">
               <div>
                 <p className="font-serif text-2xl text-ink">{doctor.name}</p>

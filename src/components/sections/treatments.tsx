@@ -103,9 +103,10 @@ export function Treatments() {
               {category.treatments.map((t, i) => (
                 <m.li
                   key={t.name}
-                  initial={{ opacity: 0, y: 14 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.06 * i, ease: [0.22, 1, 0.36, 1] }}
+                  style={{ transformPerspective: 1200, transformOrigin: '50% 100%' }}
+                  initial={{ opacity: 0, y: 40, rotateX: -32, rotateY: i % 2 ? 10 : -10 }}
+                  animate={{ opacity: 1, y: 0, rotateX: 0, rotateY: 0 }}
+                  transition={{ type: 'spring', stiffness: 130, damping: 14, delay: 0.07 * i, opacity: { duration: 0.4, delay: 0.07 * i } }}
                   className="border-r border-b border-line hover:z-10"
                 >
                   <Tilt max={4} className="group flex flex-col bg-ivory p-8 transition-[background-color,transform] duration-500 hover:bg-white lg:p-10">

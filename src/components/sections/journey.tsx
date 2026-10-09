@@ -33,7 +33,7 @@ export function Journey() {
 
         <Stagger as="ol" className="relative mt-16 grid gap-12 sm:grid-cols-2 lg:mt-24 lg:grid-cols-4 lg:gap-8">
           {steps.map((s, i) => (
-            <StaggerItem as="li" key={s.title} className="relative border-t border-ivory/15 pt-8">
+            <StaggerItem as="li" key={s.title} index={i} className="relative border-t border-ivory/15 pt-8">
               <span aria-hidden className="absolute -top-px left-0 h-px w-16 bg-clay-soft" />
               <span className="font-serif text-6xl text-ivory/25 lg:text-7xl">{String(i + 1).padStart(2, '0')}</span>
               <h3 className="mt-6 font-serif text-[1.8rem] text-ivory">{s.title}</h3>

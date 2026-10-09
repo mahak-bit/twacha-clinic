@@ -47,7 +47,7 @@ export function Why() {
 
         <Stagger className="mt-16 grid gap-px bg-line sm:grid-cols-2 lg:mt-20 lg:grid-cols-4">
           {pillars.map(({ icon: Icon, title, body }, i) => (
-            <StaggerItem key={title} as="article" className="group relative bg-cream p-8 transition-colors duration-500 hover:bg-ivory lg:p-10">
+            <StaggerItem key={title} index={i} as="article" className="group relative bg-cream p-8 transition-colors duration-500 hover:bg-ivory lg:p-10">
               <span className="font-serif text-sm text-taupe">0{i + 1}</span>
               <Icon aria-hidden strokeWidth={1.3} className="mt-10 size-8 text-clay transition-transform duration-500 ease-[var(--ease-luxe)] group-hover:-translate-y-1" />
               <h3 className="mt-6 font-serif text-[1.7rem] leading-tight text-ink">{title}</h3>

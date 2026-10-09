@@ -6,13 +6,13 @@ import { Plus } from 'lucide-react';
 import { faqs } from '@/content/faqs';
 import { clinic, telHref } from '@/content/clinic';
 import { SectionHeading } from '@/components/ui/section-heading';
-import { Reveal } from '@/components/ui/reveal';
+import { Reveal, Stagger, StaggerItem } from '@/components/ui/reveal';
 import { cn } from '@/lib/cn';
 
-function FaqItem({ q, a, open, onToggle }: { q: string; a: string; open: boolean; onToggle: () => void }) {
+function FaqItem({ q, a, open, onToggle, index }: { q: string; a: string; open: boolean; onToggle: () => void; index: number }) {
   const id = useId();
   return (
-    <li className="border-b border-line">
+    <StaggerItem as="li" index={index} className="border-b border-line">
       <h3>
         <button
           type="button"
@@ -44,7 +44,7 @@ function FaqItem({ q, a, open, onToggle }: { q: string; a: string; open: boolean
           </m.div>
         ) : null}
       </AnimatePresence>
-    </li>
+    </StaggerItem>
   );
 }
 
@@ -77,11 +77,11 @@ export function Faq() {
           </div>
         </div>
         <Reveal className="lg:col-span-7 lg:col-start-6">
-          <ul className="border-t border-line">
+          <Stagger as="ul" className="border-t border-line">
             {faqs.map((f, i) => (
-              <FaqItem key={f.q} q={f.q} a={f.a} open={open === i} onToggle={() => setOpen(open === i ? null : i)} />
+              <FaqItem key={f.q} q={f.q} a={f.a} open={open === i} onToggle={() => setOpen(open === i ? null : i)} index={i} />
             ))}
-          </ul>
+          </Stagger>
         </Reveal>
       </div>
     </section>

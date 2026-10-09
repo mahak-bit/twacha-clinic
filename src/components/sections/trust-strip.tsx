@@ -18,6 +18,7 @@ export function TrustStrip() {
           <StaggerItem
             as="li"
             key={label}
+            index={i}
             className={`flex items-center gap-3 py-6 lg:justify-center lg:py-8 ${i === points.length - 1 ? 'col-span-2 sm:col-span-1' : ''}`}
           >
             <Icon aria-hidden className="size-5 shrink-0 text-clay" strokeWidth={1.4} />

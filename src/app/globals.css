@@ -57,6 +57,13 @@
     -webkit-text-size-adjust: 100%;
   }
 
+  /* 3D entrances can poke a pixel past the edge mid-animation; never let that
+     become sideways scrolling. clip (unlike hidden) keeps sticky/pinning working. */
+  html,
+  body {
+    overflow-x: clip;
+  }
+
   body {
     background-color: var(--color-ivory);
     color: var(--color-charcoal);

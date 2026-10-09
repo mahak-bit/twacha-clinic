@@ -10,13 +10,13 @@ import { Reveal, Stagger, StaggerItem } from '@/components/ui/reveal';
 import { cn } from '@/lib/cn';
 import { Tilt } from '@/components/ui/tilt';
 
-function ConditionCard({ condition }: { condition: Condition }) {
+function ConditionCard({ condition, index }: { condition: Condition; index: number }) {
   const [open, setOpen] = useState(false);
   const panelId = useId();
   const Icon = condition.icon;
 
   return (
-    <StaggerItem as="article" className="border-r border-b border-line hover:z-10">
+    <StaggerItem as="article" index={index} className="border-r border-b border-line hover:z-10">
       <Tilt className="group flex flex-col bg-ivory p-7 transition-[background-color,box-shadow,transform] duration-500 ease-[var(--ease-luxe)] hover:bg-white hover:shadow-[0_24px_50px_-28px_rgba(42,38,35,0.3)]">
       <div className="flex items-start justify-between">
         <span className="grid size-12 place-items-center rounded-full bg-sand/70 text-clay transition-colors duration-500 group-hover:bg-clay group-hover:text-ivory">
@@ -72,8 +72,8 @@ function ConditionGroup({ id, title, intro, items }: { id: string; title: string
         <p className="max-w-md text-sm text-muted">{intro}</p>
       </Reveal>
       <Stagger className="grid border-l border-line sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {items.map((c) => (
-          <ConditionCard key={c.slug} condition={c} />
+        {items.map((c, i) => (
+          <ConditionCard key={c.slug} condition={c} index={i} />
         ))}
       </Stagger>
     </div>
